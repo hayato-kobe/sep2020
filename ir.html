@@ -92,8 +92,10 @@
      
      var ctx = Howler.ctx;
      var conv = ctx.createConvolver();
-     Howler.masterGain.connect(conv);
-     Howler.masterGain.disconnect(ctx.destination);
+     var node1 = ctx.createGain();
+     //var node2 = ctx.createGain();
+     node1.gain.value = 1;
+     node1.connect(conv);
      //conv.connect(ctx.destination);
      console.log(conv);
      console.log(sound1);
