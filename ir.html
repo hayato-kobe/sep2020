@@ -95,7 +95,7 @@
      var node1 = ctx.createGain();
      //var node2 = ctx.createGain();
      node1.gain.value = 1;
-     node1.connect(conv);
+     node1.connect(conv).connect(ctx.destination);
      //conv.connect(ctx.destination);
      console.log(conv);
      console.log(sound1);
