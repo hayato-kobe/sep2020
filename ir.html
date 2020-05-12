@@ -94,9 +94,9 @@
      var conv = audioCtx.createConvolver();
      //var node1 = audioCtx.createGain(); //これを実行すると，リバーブはかからない。
      //node1.gain.value = 0.2;//これは意味無し
-     Howler.masterGain.disconnect();
+     Howler.masterGain.disconnect(); //これだけだと音は出ない
      //node1.connect(conv);
-     //Howler.masterGain.connect(conv);
+     Howler.masterGain.connect(conv);
      console.log(conv);
      console.log(sound1);
 
