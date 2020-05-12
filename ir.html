@@ -20,6 +20,42 @@
      .btnHide{
      display:none;
      }
+	    .chkbox {
+	margin:			0 0 10px 20px;
+}
+/* ラベルのスタイル　*/
+.chkbox label {
+	padding-left:		38px;			/* ラベルの位置 */
+	font-size:		32px;
+	line-height:		32px;
+	display:		inline-block;
+	cursor:			pointer;
+	position:		relative;
+}
+
+/* ボックスのスタイル */
+.chkbox label:before {
+	content:		'';
+	width:			32px;			/* ボックスの横幅 */
+	height:			32px;			/* ボックスの縦幅 */
+	display:		inline-block;
+	position:		absolute;
+	left:			0;
+	background-color:	#fff;
+	box-shadow:		inset 1px 2px 3px 0px #000;
+	border-radius:		6px 6px 6px 6px;
+}
+/* 元のチェックボックスを表示しない */
+.chkbox input[type=checkbox] {
+	display:		none;
+}
+/* チェックした時のスタイル */
+.chkbox input[type=checkbox]:checked + label:before {
+	content:		'\2713';		/* チェックの文字 */ 
+	font-size:		34px;			/* チェックのサイズ */
+	color:			#fff;			/* チェックの色 */
+	background-color:	#06f;			/* チェックした時の色 */
+}
     </style>
     <title>インパルス応答の演習</title>
   </head>
@@ -27,10 +63,10 @@
  <article>
   <section>
    <h2>音源再生</h2>
-   <p>
-	<label for="on-off">畳み込みのON/OFF</label>
-	<input type="checkbox" id="on-off">
-   </p>
+	  <div class="chkbox">
+		  <label for="on-off">畳み込みのON/OFF</label>
+		  <input type="checkbox" id="on-off" />
+	  </div>
    <p>インパルス応答の測定前はONでも無響室録音の音源が再生されます</p>
     <p>
     <button type="button" id="speech_anechoic" class="btn1"><font size="5">音声</font></button>
