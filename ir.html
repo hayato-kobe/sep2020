@@ -46,29 +46,29 @@
 }
 .checkbox3 label {
 	padding:			0 0 0 38px;
-	font-size:			32px;
-	line-height:		32px;
+	font-size:			28px;
+	line-height:		28px;
 	display:			inline-block;
 	cursor:				pointer;
 	position:			relative;
 }
 .checkbox3 label:before {
 	content:			'';
-	width:				32px;
-	height:				32px;
+	width:				28px;
+	height:				28px;
 	display:			inline-block;
 	position:			absolute;
 	left:				0;
 	background-color:	#fff;
 	box-shadow:			inset 1px 2px 3px 0px #000;
-	border-radius:		6px 6px 6px 6px;
+	border-radius:		4px 4px 4px 4px;
 }
 .checkbox3  input[type=checkbox] {
 	display:			none;
 }
 .checkbox3  input[type=checkbox]:checked + label:before {
 	content:			'\2713';
-	font-size:			34px;
+	font-size:			28px;
 	color:				#fff;
 	background-color:	#06f;
 }
@@ -111,8 +111,8 @@
  <article>
   <section>
    <h2>音源再生</h2>
-	  <p class="checkbox2">
-		  <input type="checkbox" id="on-off" name="chkbox03" value="1" />
+	  <p class="checkbox3">
+		  <input type="checkbox" id="on-off" value="1" />
 		  <label for="on-off">畳み込みのON/OFF</label>
 	  </p>
    <p>インパルス応答の測定前はONでも無響室録音の音源が再生されます</p>
