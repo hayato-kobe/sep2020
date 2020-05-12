@@ -20,24 +20,47 @@
      .btnHide{
      display:none;
      }
-	    .checkbox2 {
-		    margin:				-30px 0px 30px 40px;
-	    }
-	    .checkbox2 input[type=checkbox] {
-		    width:				24px;
-		    height:				24px;
-		    -moz-transform:		scale(1.4);
-		    -webkit-transform:	scale(1.4);
-		    transform:			scale(1.4);
-	    }
+	    .chkbox {
+				margin:			0 0 0px 20px;
+			}
+		.chkbox label {
+	padding-left:	25px;			/* ラベルの位置 */
+	font-size:		22px;
+	line-height:		22px;
+	display:		inline-block;
+	cursor:			pointer;
+	position:		relative;
+}
+.chkbox label:before {
+	content:		'';
+	width:			20px;			/* ボックスの横幅 */
+	height:			20px;			/* ボックスの縦幅 */
+	display:		inline-block;
+	position:		absolute;
+	left:			00;
+	background-color:	#fff;
+	box-shadow:		inset 1px 2px 3px 0px #000;
+	border-radius:		3px 3px 3px 3px;
+}
+			.chkbox input[type=checkbox] {
+	display:		none;
+}
+/* チェックした時のスタイル */
+.chkbox input[type=checkbox]:checked + label:before {
+	content:		'\2713';		/* チェックの文字 */ 
+	font-size:		22px;			/* チェックのサイズ */
+	color:			#fff;			/* チェックの色 */
+	background-color:	#06f;			/* チェックした時の色 */
+}
 </style>
+<meta charset="UTF-8">
 <title>インパルス応答の演習</title>
 </head>
 <body>
 	<article>
 		<section>
 			<h2>音源再生</h2>
-			<p class="checkbox2">
+			<p class="chkbox">
 				<input type="checkbox" id="on-off" value="1" />
 				<label for="on-off">畳み込みのON/OFF</label>
 			</p>
