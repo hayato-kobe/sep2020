@@ -97,16 +97,18 @@
      
      var audioCtx = Howler.ctx;
      var conv = audioCtx.createConvolver();
-     Howler.masterGain.disconnect();
-     Howler.masterGain.connect(conv).connect(audioCtx.destination);//これが正解
+     //Howler.masterGain.disconnect();
+     //Howler.masterGain.connect(conv).connect(audioCtx.destination);//これが正解
 	  
      const chkB = document.querySelector('#on-off');
      chkB.addEventListener('change', (event) => {
 	     if(event.target.checked==false || conv.buffer == null){
+		     console.log("ff");
 		     Howler.masterGain.disconnect();
 		     Howler.masterGain.connect(audioCtx.destination);
 		     }
 	     else {
+		     console.log("tt");
 		     Howler.masterGain.disconnect();
 		     Howler.masterGain.connect(conv).connect(audioCtx.destination);
 	     }
