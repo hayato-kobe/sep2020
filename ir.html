@@ -20,41 +20,89 @@
      .btnHide{
      display:none;
      }
-	    .chkbox {
-	margin:			0 0 10px 20px;
+	.checkbox1 {
+	margin:		-30px 0px 30px 32px;
 }
-/* ラベルのスタイル　*/
-.chkbox label {
-	padding-left:		30px;			/* ラベルの位置 */
-	font-size:		24px;
-	line-height:		24px;
-	display:		inline-block;
-	cursor:			pointer;
-	position:		relative;
+.checkbox1 input[type=checkbox] {
+	width:		16px;
+	height:		16px;
 }
 
-/* ボックスのスタイル */
-.chkbox label:before {
-	content:		'';
-	width:			24px;			/* ボックスの横幅 */
-	height:			24px;			/* ボックスの縦幅 */
-	display:		inline-block;
-	position:		absolute;
-	left:			0;
+
+.checkbox2 {
+	margin:				-30px 0px 30px 40px;
+}
+.checkbox2 input[type=checkbox] {
+	width:				24px;
+	height:				24px;
+	-moz-transform:		scale(1.4);
+	-webkit-transform:	scale(1.4);
+	transform:			scale(1.4);
+}
+
+
+.checkbox3 {
+	margin:				-30px 0px 50px 40px;
+}
+.checkbox3 label {
+	padding:			0 0 0 38px;
+	font-size:			32px;
+	line-height:		32px;
+	display:			inline-block;
+	cursor:				pointer;
+	position:			relative;
+}
+.checkbox3 label:before {
+	content:			'';
+	width:				32px;
+	height:				32px;
+	display:			inline-block;
+	position:			absolute;
+	left:				0;
 	background-color:	#fff;
-	box-shadow:		inset 1px 2px 3px 0px #000;
-	border-radius:		4px 4px 4px 4px;
+	box-shadow:			inset 1px 2px 3px 0px #000;
+	border-radius:		6px 6px 6px 6px;
 }
-/* 元のチェックボックスを表示しない */
-.chkbox input[type=checkbox] {
-	display:		none;
+.checkbox3  input[type=checkbox] {
+	display:			none;
 }
-/* チェックした時のスタイル */
-.chkbox input[type=checkbox]:checked + label:before {
-	content:		'\2713';		/* チェックの文字 */ 
-	font-size:		34px;			/* チェックのサイズ */
-	color:			#fff;			/* チェックの色 */
-	background-color:	#06f;			/* チェックした時の色 */
+.checkbox3  input[type=checkbox]:checked + label:before {
+	content:			'\2713';
+	font-size:			34px;
+	color:				#fff;
+	background-color:	#06f;
+}
+
+.checkbox4 {
+	margin:				-30px 0px 50px 40px;
+}
+.checkbox4 label {
+	padding:			0 0 0 54px;
+	font-size:			48px;
+	line-height:		48px;
+	display:			inline-block;
+	cursor:				pointer;
+	position:			relative;
+}
+.checkbox4 label:before {
+	content:			'';
+	width:				48px;			/* boxã®æ¨ªå¹… */
+	height:				48px;			/* boxã®ç¸¦å¹… */
+	display:			inline-block;
+	position:			absolute;
+	left:				0;
+	background-color:	#eee;
+	box-shadow:			inset 1px 2px 3px 0px #000000;
+	border-radius:		6px 6px 6px 6px;
+}
+.checkbox4  input[type=checkbox] {
+	display:			none;
+}
+.checkbox4  input[type=checkbox]:checked + label:before {
+	content:			'\2713';
+	font-size:			46px;
+	color:				#fff;
+	background-color:	#0f6;
 }
     </style>
     <title>インパルス応答の演習</title>
@@ -63,9 +111,9 @@
  <article>
   <section>
    <h2>音源再生</h2>
-	  <div class="chkbox">
+	  <div class="checkbox2">
+		  <input type="checkbox" id="on-off" name="chkbox03" value="1" />
 		  <label for="on-off">畳み込みのON/OFF</label>
-		  <input type="checkbox" id="on-off" value="1" />
 	  </div>
    <p>インパルス応答の測定前はONでも無響室録音の音源が再生されます</p>
     <p>
