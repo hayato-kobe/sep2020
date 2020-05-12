@@ -28,8 +28,8 @@
   <section>
    <h2>音源再生</h2>
    <p>
-	<label for="on-off-flip">畳み込みのON/OFF</label>
-	<input type="checkbox" id="on-off-flip">
+	<label for="on-off">畳み込みのON/OFF</label>
+	<input type="checkbox" id="on-off">
    </p>
    <p>インパルス応答の測定前はONでも無響室録音の音源が再生されます</p>
     <p>
@@ -100,6 +100,11 @@
      var conv = audioCtx.createConvolver();
      Howler.masterGain.disconnect();
      Howler.masterGain.connect(conv).connect(audioCtx.destination);//これが正解
+	  
+     const chkB = document.querySelector('#on-off');
+     chkB.addEventListener('change', (event) => {
+	     console.log(event.target.value);
+     });
 
      const btn1 = document.querySelector("#speech_anechoic");
       
