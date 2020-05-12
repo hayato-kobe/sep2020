@@ -102,7 +102,15 @@
 	  
      const chkB = document.querySelector('#on-off');
      chkB.addEventListener('change', (event) => {
-	     console.log(event);
+	     if(event.target.checked==false || conv.buffer == null){
+		     Howler.masterGain.disconnect();
+		     Howler.masterGain.connect(audioCtx.destination);
+		     }
+	     else {
+		     Howler.masterGain.disconnect();
+		     Howler.masterGain.connect(conv).connect(audioCtx.destination);
+	     }
+	     console.log(event.target.checked);
      });
 
      const btn1 = document.querySelector("#speech_anechoic");
@@ -112,15 +120,6 @@
        document.getElementById("speech_anechoic_disabled").classList.remove("btnHide") ;
        document.getElementById("speech_anechoic").classList.add("btnHide") ;
        document.getElementById("speech_anechoic_disabled").classList.add("btnShow") ;
-       if (conv.buffer == null){
-         console.log("here!");
-         Howler.masterGain.disconnect();
-         Howler.masterGain.connect(audioCtx.destination);
-       }
-       else {
-         Howler.masterGain.disconnect();
-         Howler.masterGain.connect(conv).connect(audioCtx.destination);
-       }
        sound1.play();
      });
 
@@ -131,14 +130,6 @@
        document.getElementById("music_anechoic_disabled").classList.remove("btnHide") ;
        document.getElementById("music_anechoic").classList.add("btnHide") ;
        document.getElementById("music_anechoic_disabled").classList.add("btnShow") ;
-       if (conv.buffer == null){
-         Howler.masterGain.disconnect();
-         Howler.masterGain.connect(audioCtx.destination);
-       }
-       else {
-         Howler.masterGain.disconnect();
-         Howler.masterGain.connect(conv).connect(audioCtx.destination);
-       }
        sound2.play();
      });
     </script>
