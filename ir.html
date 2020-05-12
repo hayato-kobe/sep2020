@@ -95,7 +95,8 @@
      Howler.masterGain.disconnect(); //これだけだと音は出ない
      //node1.connect(conv);
      //Howler.masterGain.connect(conv);//これでも音は出ない
-     Howler.masterGain.connect(conv).connect(audioCtx.distination);
+     //Howler.masterGain.connect(conv).connect(audioCtx.distination);//これでも音は出ない
+     Howler.masterGain.connect(audioCtx.distination);
      console.log(conv);
      console.log(sound1);
 
