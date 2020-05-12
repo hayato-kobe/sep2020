@@ -90,13 +90,13 @@
       }
      });
      
-     var ctx = Howler.ctx;
-     var conv = ctx.createConvolver();
-     var node1 = ctx.createGain();
+     var audioCtx = Howler.ctx;
+     var conv = audioCtx.createConvolver();
+     var node1 = audioCtx.createGain();
      //var node2 = ctx.createGain();
      node1.gain.value = 1;
      node1.connect(conv);
-     conv.connect(ctx.destination);
+     conv.connect(audioCtx.destination);
      console.log(conv);
      console.log(sound1);
 
@@ -278,6 +278,7 @@
           processor = null;
           var audioBuffer = context.createBuffer( 1, length, sampleRate );
           audioBuffer.getChannelData( 0 ).set( dat2 );
+          
           conv.buffer = audioBuffer;
 
           var source = context.createBufferSource();
