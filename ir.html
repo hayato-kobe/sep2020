@@ -92,6 +92,8 @@
      
      var ctx = Howler.ctx;
      var conv = ctx.createConvolver();
+     Howler.masterGain.connect(conv);
+     conv.connect(ctx.destination);
      console.log(conv);
      console.log(sound1);
 
@@ -102,8 +104,6 @@
        document.getElementById("speech_anechoic_disabled").classList.remove("btnHide") ;
        document.getElementById("speech_anechoic").classList.add("btnHide") ;
        document.getElementById("speech_anechoic_disabled").classList.add("btnShow") ;
-       Howler.masterGain.connect(conv);
-       conv.connect(ctx.destination);
        sound1.play();
      });
 
