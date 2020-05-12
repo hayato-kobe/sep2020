@@ -27,6 +27,7 @@
  <article>
   <section>
    <h2>音源再生</h2>
+   <input type="checkbox" id="tsw" />
    <p>インパルス応答の測定前は無響室録音の音源が再生されます</p>
     <p>
     <button type="button" id="speech_anechoic" class="btn1"><font size="5">音声</font></button>
@@ -65,6 +66,7 @@
      document.getElementById("stopBtn").classList.add("btnColB") ;
      document.getElementById("stopBtn").classList.add("btnHide") ;
      
+     var sw
      var sound1 = new Howl({
       src: ['speech_44k.wav'],
       onloaderror: function() {
@@ -328,6 +330,13 @@
         return b;
       }
 </script>
+<script>
+$(document).ready(function () {
+  $("#tsw").toggleSwitch();
+});
+</script>
+
+		
 
  </body>
 </html>
