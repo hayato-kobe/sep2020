@@ -69,7 +69,6 @@
      document.getElementById("stopBtn").classList.add("btnColB") ;
      document.getElementById("stopBtn").classList.add("btnHide") ;
      
-     var sw
      var sound1 = new Howl({
       src: ['speech_44k.wav'],
       onloaderror: function() {
@@ -103,7 +102,7 @@
 	  
      const chkB = document.querySelector('#on-off');
      chkB.addEventListener('change', (event) => {
-	     console.log(event.target.value);
+	     console.log(event.checked);
      });
 
      const btn1 = document.querySelector("#speech_anechoic");
