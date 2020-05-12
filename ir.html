@@ -27,8 +27,11 @@
  <article>
   <section>
    <h2>音源再生</h2>
-   <input type="checkbox" id="tsw" />
-   <p>インパルス応答の測定前は無響室録音の音源が再生されます</p>
+   <p class="ui-field-contain">
+	<label for="on-off-flip">畳み込みのON/OFF</label>
+	<input type="checkbox" name="on-off-flip" id="on-off-flip" data-role="flipswitch">
+   </p>
+   <p>インパルス応答の測定前はONでも無響室録音の音源が再生されます</p>
     <p>
     <button type="button" id="speech_anechoic" class="btn1"><font size="5">音声</font></button>
     <button id="speech_anechoic_disabled" class="btn2" disabled><font size="5">音声</font></button>
@@ -330,12 +333,6 @@
         return b;
       }
 </script>
-<script>
-$(document).ready(function () {
-  $("#tsw").toggleSwitch();
-});
-</script>
-
 		
 
  </body>
