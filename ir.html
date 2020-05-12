@@ -65,9 +65,7 @@
      document.getElementById("stopBtn").classList.add("btnHide") ;
      
      var sound1 = new Howl({
-      src: ['http://www2.kobe-u.ac.jp/~hayato/SEP2020/speech_44k.wav'],
-      //src: ['https://docs.google.com/uc?id=1jWHffHLvmwC2iN3bHuo3L1B8XqzqpYgw'],
-      //format: "wav",
+      src: ['speech_44k.wav'],
       onloaderror: function() {
        console.log("load error");
       },
@@ -80,7 +78,7 @@
      });
 
      var sound2 = new Howl({
-      src: ['http://www2.kobe-u.ac.jp/~hayato/SEP2020/music_44k.wav'],
+      src: ['music_44k.wav'],
       onloaderror: function() {
        console.log("load error");
       },
@@ -104,12 +102,9 @@
        document.getElementById("speech_anechoic_disabled").classList.remove("btnHide") ;
        document.getElementById("speech_anechoic").classList.add("btnHide") ;
        document.getElementById("speech_anechoic_disabled").classList.add("btnShow") ;
-       //Howler.masterGain.connect(conv);
-       //conv.connect(ctx.destination);
-       sound1.load();
+       Howler.masterGain.connect(conv);
+       conv.connect(ctx.destination);
        sound1.play();
-       console.log(sound1);
-       console.log(conv);
      });
 
      const btn2 = document.querySelector("#music_anechoic");
