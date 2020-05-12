@@ -93,6 +93,7 @@
      var ctx = Howler.ctx;
      var conv = ctx.createConvolver();
      Howler.masterGain.connect(conv);
+     Howler.masterGain.disconnect(ctx.destination);
      //conv.connect(ctx.destination);
      console.log(conv);
      console.log(sound1);
@@ -117,6 +118,7 @@
        sound2.play();
      });
     </script>
+  
   <script>
       window.AudioContext = window.AudioContext || window.webkitAudioContext;
       var context = new AudioContext();
@@ -213,8 +215,6 @@
            }
           }
 
-          console.log( dat2 ); 
-          
           for ( var i = 0; i < chartLength; i ++ ){
            max = 0.0;
            for ( var j = 0; j < sampleLength/chartLength; j ++ ){
