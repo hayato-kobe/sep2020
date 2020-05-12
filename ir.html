@@ -26,7 +26,7 @@
 <body>
  <article>
   <section>
-   <h2>無響室録音の音源</h2>
+   <h2>音源再生（インパルス応答の測定前は無響室録音の音源が再生される）</h2>
     <p>
     <button type="button" id="speech_anechoic" class="btn1"><font size="5">音声</font></button>
     <button id="speech_anechoic_disabled" class="btn2" disabled><font size="5">音声</font></button>
@@ -92,13 +92,8 @@
      
      var audioCtx = Howler.ctx;
      var conv = audioCtx.createConvolver();
-     Howler.masterGain.disconnect(); //これだけだと音は出ない
-     //node1.connect(conv);
-     //Howler.masterGain.connect(conv);//これでも音は出ない
-     Howler.masterGain.connect(conv).connect(audioCtx.destination);//これでも音は出ない
-     //Howler.masterGain.connect(audioCtx.destination);//これで再び音が出る。
-     console.log(conv);
-     console.log(sound1);
+     Howler.masterGain.disconnect();
+     Howler.masterGain.connect(conv).connect(audioCtx.destination);//これが正解
 
      const btn1 = document.querySelector("#speech_anechoic");
       
@@ -107,6 +102,14 @@
        document.getElementById("speech_anechoic_disabled").classList.remove("btnHide") ;
        document.getElementById("speech_anechoic").classList.add("btnHide") ;
        document.getElementById("speech_anechoic_disabled").classList.add("btnShow") ;
+       if (conv.buffer == null){
+         Howler.masterGain.disconnect();
+         Howler.masterGain.connect(audioCtx.destination);
+       }
+       else {
+         Howler.masterGain.disconnect();
+         Howler.masterGain.connect(conv).connect(audioCtx.destination);
+       }
        sound1.play();
      });
 
@@ -117,6 +120,14 @@
        document.getElementById("music_anechoic_disabled").classList.remove("btnHide") ;
        document.getElementById("music_anechoic").classList.add("btnHide") ;
        document.getElementById("music_anechoic_disabled").classList.add("btnShow") ;
+       if (conv.buffer == null){
+         Howler.masterGain.disconnect();
+         Howler.masterGain.connect(audioCtx.destination);
+       }
+       else {
+         Howler.masterGain.disconnect();
+         Howler.masterGain.connect(conv).connect(audioCtx.destination);
+       }
        sound2.play();
      });
     </script>
