@@ -1,369 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-    .btn1,.btn2,.btn3,.btn4,.btn5,.btn6{
-     width: 90%;
-     padding:10pt;
-     -webkit-appearance: none;
-     color: #ffffff;
-     }
-     .btnColB{
-     background-color: #007Aff;
-     }
-     .btnColG{
-     background-color: #EFEFEF;
-     }
-     .btnShow{
-     display:block;
-     }
-     .btnHide{
-     display:none;
-     }
-	    .chkbox {
-				margin:			0 0 0px 20px;
-			}
-		.chkbox label {
-	padding-left:	25px;			/* ラベルの位置 */
-	font-size:		22px;
-	line-height:		22px;
-	display:		inline-block;
-	cursor:			pointer;
-	position:		relative;
-}
-.chkbox label:before {
-	content:		'';
-	width:			20px;			/* ボックスの横幅 */
-	height:			20px;			/* ボックスの縦幅 */
-	display:		inline-block;
-	position:		absolute;
-	left:			00;
-	background-color:	#fff;
-	box-shadow:		inset 1px 2px 3px 0px #000;
-	border-radius:		3px 3px 3px 3px;
-}
-			.chkbox input[type=checkbox] {
-	display:		none;
-}
-/* チェックした時のスタイル */
-.chkbox input[type=checkbox]:checked + label:before {
-	content:		'\2713';		/* チェックの文字 */ 
-	font-size:		22px;			/* チェックのサイズ */
-	color:			#fff;			/* チェックの色 */
-	background-color:	#06f;			/* チェックした時の色 */
-}
-</style>
+<head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="./css/btn.css">
+<link rel="stylesheet" href="./css/chkbox.css">
 <title>インパルス応答の演習</title>
 </head>
 <body>
-	<article>
-		<section>
-			<h2>音源再生</h2>
-			<p class="chkbox">
-				<input type="checkbox" id="on-off" value="1" />
-				<label for="on-off">畳み込みのON/OFF</label>
-			</p>
-   <p>インパルス応答の測定前はONでも無響室録音の音源が再生されます</p>
-    <p>
-    <button type="button" id="speech_anechoic" class="btn1"><font size="5">音声</font></button>
-    <button id="speech_anechoic_disabled" class="btn2" disabled><font size="5">音声</font></button>
-    </p>
-    <p>
-    <button type="button" id="music_anechoic" class="btn3"><font size="5">音楽</font></button>
-    <button id="music_anechoic_disabled" class="btn4" disabled><font size="5">音楽</font></button>
-    </p>
-   </section>
-   <section>
-    <h2>インパルス応答の録音</h2>
-    <button type="button" id="recBtn" class="btn5" onClick="startRec();"><font size="5">録音開始</font></button>
-    <button type="button" id="stopBtn" class="btn6" onClick="stopRec();"><font size="5">録音停止</font></button>
-    <p>（１）↑のボタンを押してから手を叩く</p>
-    <p>（２）響きが聞こえなくなったら↑のボタンをもう一度押す</p>
-    <br>
-    <canvas id="myLineChart"></canvas>
-   </section>
-  </article>
-  
-  <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-  <script>
-     document.getElementById("speech_anechoic").classList.add("btnColB") ;
-     document.getElementById("speech_anechoic").classList.add("btnShow") ;
-     document.getElementById("speech_anechoic_disabled").classList.add("btnColG") ;
-     document.getElementById("speech_anechoic_disabled").classList.add("btnHide") ;
-     document.getElementById("music_anechoic").classList.add("btnColB") ;
-     document.getElementById("music_anechoic").classList.add("btnShow") ;
-     document.getElementById("music_anechoic_disabled").classList.add("btnColG") ;
-     document.getElementById("music_anechoic_disabled").classList.add("btnHide") ;
-     document.getElementById("recBtn").classList.add("btnColB") ;
-     document.getElementById("recBtn").classList.add("btnShow") ;
-     document.getElementById("stopBtn").classList.add("btnColB") ;
-     document.getElementById("stopBtn").classList.add("btnHide") ;
-     
-     var sound1 = new Howl({
-      src: ['speech_44k.wav'],
-      onloaderror: function() {
-       console.log("load error");
-      },
-      onend: function() {
-       document.getElementById("speech_anechoic").classList.remove("btnHide") ;
-       document.getElementById("speech_anechoic_disabled").classList.remove("btnShow") ;
-       document.getElementById("speech_anechoic").classList.add("btnShow") ;
-       document.getElementById("speech_anechoic_disabled").classList.add("btnHide") ;
-      },
-     });
+<article>
+<section>
+<h2>音源再生</h2>
+<p class="chkbox">
+<input type="checkbox" id="on-off" value="1">
+<label for="on-off">畳み込みのON/OFF</label>
+</p>
+<p>インパルス応答の測定前はONでも無響室録音の音源が再生されます</p>
+<p>
+<button type="button" id="speech_anechoic" class="btn1"><font size="5">音声</font></button>
+<button id="speech_anechoic_disabled" class="btn2" disabled><font size="5">音声</font></button>
+</p>
+<p>
+<button type="button" id="music_anechoic" class="btn3"><font size="5">音楽</font></button>
+<button id="music_anechoic_disabled" class="btn4" disabled><font size="5">音楽</font></button>
+</p>
+</section>
+<section>
+<h2>インパルス応答の録音</h2>
+<button type="button" id="recBtn" class="btn5" onClick="startRec();"><font size="5">録音開始</font></button>
+<button type="button" id="stopBtn" class="btn6" onClick="stopRec();"><font size="5">録音停止</font></button>
+<p>（１）↑のボタンを押してから手を叩く</p>
+<p>（２）響きが聞こえなくなったら↑のボタンをもう一度押す</p>
+<p id="revT">インパルス応答から算出した残響時間：　　秒</p>
+<br>
+<canvas id="myLineChart"></canvas>
+</section>
+</article>
 
-     var sound2 = new Howl({
-      src: ['music_44k.wav'],
-      onloaderror: function() {
-       console.log("load error");
-      },
-      onend: function() {
-       document.getElementById("music_anechoic").classList.remove("btnHide") ;
-       document.getElementById("music_anechoic_disabled").classList.remove("btnShow") ;
-       document.getElementById("music_anechoic").classList.add("btnShow") ;
-       document.getElementById("music_anechoic_disabled").classList.add("btnHide") ;
-      }
-     });
-     
-     var audioCtx = Howler.ctx;
-     var conv = audioCtx.createConvolver();
-     //Howler.masterGain.disconnect();
-     //Howler.masterGain.connect(conv).connect(audioCtx.destination);//これが正解
-	  
-     const chkB = document.querySelector('#on-off');
-     chkB.addEventListener('change', (event) => {
-	     if(event.target.checked==false || conv.buffer == null){
-		     console.log("ff");
-		     Howler.masterGain.disconnect();
-		     Howler.masterGain.connect(audioCtx.destination);
-		     }
-	     else {
-		     console.log("tt");
-		     Howler.masterGain.disconnect();
-		     Howler.masterGain.connect(conv).connect(audioCtx.destination);
-	     }
-	     console.log(event.target.checked);
-     });
+<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/main.js"></script>
 
-     const btn1 = document.querySelector("#speech_anechoic");
-      
-     btn1.addEventListener("click", ()=>{
-       document.getElementById("speech_anechoic").classList.remove("btnShow") ;
-       document.getElementById("speech_anechoic_disabled").classList.remove("btnHide") ;
-       document.getElementById("speech_anechoic").classList.add("btnHide") ;
-       document.getElementById("speech_anechoic_disabled").classList.add("btnShow") ;
-       sound1.play();
-     });
-
-     const btn2 = document.querySelector("#music_anechoic");
-      
-     btn2.addEventListener("click", ()=>{
-       document.getElementById("music_anechoic").classList.remove("btnShow") ;
-       document.getElementById("music_anechoic_disabled").classList.remove("btnHide") ;
-       document.getElementById("music_anechoic").classList.add("btnHide") ;
-       document.getElementById("music_anechoic_disabled").classList.add("btnShow") ;
-       sound2.play();
-     });
-    </script>
-  
-  <script>
-      window.AudioContext = window.AudioContext || window.webkitAudioContext;
-      var context = new AudioContext();
-      var processor = null;
-      var num = 0;
-      var duration = 0.0;
-      var length = 0;
-      var sampleRate = 0;
-      var floatData = null;
-      
-      // handleSuccess
-      function handleSuccess( stream ){
-        var source = context.createBufferSource();
-        var input = context.createMediaStreamSource( stream );
-        processor = context.createScriptProcessor( 1024, 1, 1 );
-        input.connect( processor );
-        processor.onaudioprocess = function( e ){
-          //. 音声データ
-          var inputdata = e.inputBuffer.getChannelData(0);
-          //console.log( inputdata );
-          if( !num ){
-            num = e.inputBuffer.numberOfChannels;
-            floatData = new Array(num);
-            for( var i = 0; i < num; i ++ ){
-              floatData[i] = [];
-            }
-          sampleRate = e.inputBuffer.sampleRate;
-          }
-          var float32Array = e.inputBuffer.getChannelData( 0 );
-          if( availableData( float32Array ) ){
-            duration += e.inputBuffer.duration;
-            length += e.inputBuffer.length;
-            for( var i = 0; i < num ; i ++ ){
-            float32Array = e.inputBuffer.getChannelData( i );
-            Array.prototype.push.apply( floatData[i], float32Array );
-            }
-          }
-        };
-        processor.connect( context.destination );
-      }
-      
-      // startRec
-      function startRec(){
-        document.getElementById("recBtn").classList.remove("btnShow") ;
-        document.getElementById("stopBtn").classList.remove("btnHide") ;
-        document.getElementById("recBtn").classList.add("btnHide") ;
-        document.getElementById("stopBtn").classList.add("btnShow") ;
-        navigator.mediaDevices.getUserMedia( { audio: true } ).then( handleSuccess );
-      }
-      
-      //
-      function stopRec(){
-        
-        document.getElementById("recBtn").classList.remove("btnHide") ;
-        document.getElementById("stopBtn").classList.remove("btnShow") ;
-        document.getElementById("recBtn").classList.add("btnShow") ;
-        document.getElementById("stopBtn").classList.add("btnHide") ;
-        
-        if( processor ){
-          
-          var dat = null;
-          var dat2 = null;
-          var chartLength = 4096;
-          dat = new Array(chartLength);
-          var max = 0.0;
-          var maxPosition = 0;
-          
-          for ( var i = 0; i < floatData[0].length; i ++ ){
-           if (max < Math.abs(floatData[0][i])){
-             max = Math.abs(floatData[0][i]);
-             maxPosition = i;
-           }
-          }
-          
-          var startPosition = Math.max(0, maxPosition - sampleRate * 0.1);
-           
-          var sampleLength = 0;
-          while (sampleLength < sampleRate * 2 ) {
-           sampleLength += chartLength;
-          }
-          
-          dat2 = new Array(sampleLength);
-          if (floatData[0].length - startPosition < sampleLength){
-           for ( var i = 0; i < floatData[0].length - startPosition; i ++ ){
-            dat2[i] = floatData[0][startPosition + i];
-           }
-           for ( var i = floatData[0].length - startPosition; i < sampleLength; i ++ ){
-            dat2[i] = 0.0;
-           }
-          }
-          else {
-           for ( var i = 0; i < sampleLength; i ++ ){
-            dat2[i] = floatData[0][startPosition + i];
-           }
-          }
-
-          for ( var i = 0; i < chartLength; i ++ ){
-           max = 0.0;
-           for ( var j = 0; j < sampleLength/chartLength; j ++ ){
-            if (max < Math.abs(dat2[i * sampleLength/chartLength + j])){
-             max = Math.abs(dat2[i * sampleLength/chartLength + j]);
-             dat[i]={x:(sampleLength/sampleRate)*i/chartLength,y:dat2[i * sampleLength/chartLength + j]};
-            }
-           }
-          }
-          
-          var ctx = document.getElementById("myLineChart");
-          var myLineChart = new Chart(ctx, {
-           type: 'scatter',
-           data: { 
-           datasets: [
-           {
-            label: '録音した波形',
-            data: dat, borderWidth: 1, borderColor: 'red',fill: false, showLine: true, pointRadius: 0, cubicInterpolationMode: 'monotone'
-           }]
-           },
-           options: {
-            //responsive: false,
-            //maintainAspectRatio: false,
-            scales: {
-             yAxes: [{
-              display: true,             //表示設定
-              scaleLabel: {              //軸ラベル設定
-               display: true,          //表示設定
-               labelString: '音圧（±1が録音できる最大値）',  //ラベル
-               //fontSize: 18               //フォントサイズ
-              },
-              ticks: {                      //最大値最小値設定
-               min: -1,                   //最小値
-               max: 1,                  //最大値
-               //fontSize: 18,             //フォントサイズ
-               stepSize: 0.2               //軸間隔
-              },
-             }],
-            xAxes: [{                        
-             display: true,                //表示設定
-             scaleLabel: {                 //軸ラベル設定
-              display: true,          //表示設定
-              labelString: '時間（秒）',  //ラベル
-              //fontSize: 18               //フォントサイズ
-             },
-             ticks: {
-              min: 0,                   //最小値
-              max: 2,                  //最大値
-              //fontSize: 18,             //フォントサイズ
-              stepSize: 0.2               //軸間隔
-             },
-            }]
-           },
-          }
-    });
-          
-          processor.disconnect();
-          processor.onaudioprocess = null;
-          processor = null;
-          var audioBuffer = context.createBuffer( 1, length, sampleRate );
-          audioBuffer.getChannelData( 0 ).set( dat2 );
-          
-          conv.buffer = audioBuffer;
-
-          var source = context.createBufferSource();
-          source.buffer = audioBuffer;           //. オーディオデータの実体（AudioBuffer インスタンス）
-          source.loop = false;                   //. ループ再生するか？
-          source.loopStart = 0;                  //. オーディオ開始位置（秒単位）
-          source.loopEnd = audioBuffer.duration; //. オーディオ終了位置（秒単位）
-          source.playbackRate.value = 1.0;       //. 再生速度＆ピッチ
-
-          source.connect( context.destination );
-          //. for lagacy browsers
-          source.start( 0 );
-          source.onended = function( event ){
-          //. イベントハンドラ削除
-          source.onended = null;
-          document.onkeydown = null;
-          num = 0;
-          duration = 0.0;
-          length = 0;
-          //. オーディオ終了
-          source.stop( 0 );
-          console.log( 'audio stopped.' );
-          };
-          
-        }
-      }
-
-      //
-      function availableData( arr ){
-        var b = false;
-        for( var i = 0; i < arr.length && !b; i ++ ){
-          b = ( arr[i] != 0 );
-        }
-        return b;
-      }
-</script>
-		
-
- </body>
+</body>
 </html>
