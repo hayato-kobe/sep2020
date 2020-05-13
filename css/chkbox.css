@@ -1,0 +1,31 @@
+.chkbox {
+	margin:			0 0 0px 20px;
+}
+.chkbox label {
+	padding-left:	25px;
+	font-size:		22px;
+	line-height:		22px;
+	display:		inline-block;
+	cursor:			pointer;
+	position:		relative;
+}
+.chkbox label:before {
+	content:		'';
+	width:			20px;
+	height:			20px;
+	display:		inline-block;
+	position:		absolute;
+	left:			00;
+	background-color:	#fff;
+	box-shadow:		inset 1px 2px 3px 0px #000;
+	border-radius:		3px 3px 3px 3px;
+}
+.chkbox input[type=checkbox] {
+	display:		none;
+}
+.chkbox input[type=checkbox]:checked + label:before {
+	content:		'\2713';
+	font-size:		22px;
+	color:			#fff;
+	background-color:	#06f;
+}
