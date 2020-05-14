@@ -70,6 +70,27 @@ function initSoundWithBtnsOnOff (srcSound, idBtn1, idBtn2) {
 	return sound1;
 }
 
+function trimAudioData2 (dat_func, sampleRate_func, sampleLength_func) {
+	var max = 0;
+	var maxPosition = 0;
+	var output = new Array(sampleLength_func);
+	for ( var i = 0; i < sampleLength_func; i ++ ){
+		output[i] = 0;
+	}
+	for ( var i = 0; i < dat_func.length; i ++ ){
+		if (max < Math.abs(dat_func[i])){
+			max = Math.abs(dat_func[i]);
+			maxPosition = i;
+		}
+	}
+	var startPosition = Math.max(0, maxPosition - sampleRate_func * 0.1);
+	var loop_size = Math.min(sampleLength_func, dat_func.length - startPosition);
+	for ( var i = 0; i < loop_size; i ++ ){
+		output[i] = dat_func[i + startPosition];
+	}
+	return output;
+}
+
 function trimAudioData () {
 	dat = new Array(chartLength);
 	var max = 0.0;
