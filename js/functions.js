@@ -19,6 +19,20 @@ function setRevT (wn,revT,sampleRate) {
 }
 
 function setRevR (ir_func, revR_func){
+	var max = 0;
+	ir_func[0] = 1;
+	for (var i = 1; i < ir_func.length ; i ++){
+		if (max < Math.abs(ir_func[i])) {
+			max = Math.abs(ir_func[i]);
+		}
+	}
+	for (var i = 1; i < ir_func.length ; i ++){
+		ir_func[i] = Math.pow(10, revR_func/20) * ir_func[i] / max;
+	}
+	return ir_func;
+}
+
+function setDRR (ir_func, revR_func){
 	var total = 0;
 	var max = 0;
  	for (var i = 0; i < ir_func.length ; i ++){

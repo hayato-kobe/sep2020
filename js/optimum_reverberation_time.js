@@ -8,7 +8,7 @@ buttonHide("music_anechoic_disabled");
 buttonColG("music_anechoic_disabled");
 
 document.getElementById("revTime").value = "1.0";
-document.getElementById("revRatio").value = "0.0";
+document.getElementById("revRatio").value = "-15.0";
 
 var chart_ctx = document.getElementById("myChart");
 
@@ -65,7 +65,7 @@ tbox1.addEventListener('input', (event) => {
 const tbox2 = document.getElementById("revRatio");
 tbox2.addEventListener('input', (event) => {
   if($.isNumeric(document.getElementById("revRatio").value)){
-    limitTextValue("revRatio",-30, 30)
+    limitTextValue("revRatio",-60, 0)
     var t = document.getElementById("revTime").value;
     var r = document.getElementById("revRatio").value;
     if (ir_org != null) {
