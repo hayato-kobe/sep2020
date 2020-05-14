@@ -1,3 +1,41 @@
+function limitTextValue (id, min, max) {
+	var value = document.getElementById(id).value;
+	if (value > max){
+		document.getElementById(id).value = max;
+	}
+	else if (value < min) {
+		document.getElementById(id).value = min;
+	}
+}
+
+function setRevT (wn,revT,sampleRate) {
+	var h = new Array(wn.length);
+	var h2;
+	for (var i = 0; i < wn.length ; i ++){
+		h2 = Math.sqrt(Math.exp(-(6 * Math.log(10) * i / sampleRate)/revT));
+		h[i] = h2 * wn[i];
+	}
+	return h;
+}
+
+function setRevR (ir_func, revR_func){
+	var total = 0;
+	var max = 0;
+ 	for (var i = 0; i < ir_func.length ; i ++){
+		total += Math.pow(ir_func[i], 2);
+	}
+	ir_func[0] = Math.sqrt(total * Math.pow(10, revR_func/10));
+	for (var i = 0; i < ir_func.length ; i ++){
+		if (max < Math.abs(ir_func[i])) {
+			max = Math.abs(ir_func[i]);
+		}
+	}
+	for (var i = 0; i < ir_func.length ; i ++){
+		ir_func[i] = ir_func[i] / max;
+	}
+	return ir_func;
+}
+
 function buttonShow (idBtn) {
 	document.getElementById(idBtn).classList.add("btnShow") ;
 	document.getElementById(idBtn).classList.remove("btnHide") ;
@@ -72,7 +110,23 @@ function trimAudioData () {
 	}
 }
 
-function calRevT (ir) {
+function resampleDataForChart (dat_func, sampleRate_func, outputLength_func) {
+	var output = new Array(outputLength_func);
+	var block_size = Math.floor(dat_func.length / outputLength_func);
+	var max;
+	for (var i = 0; i < outputLength_func; i ++){
+		max = 0;
+		for (var j = 0; j < block_size; j ++){
+			if (max < Math.abs(dat_func[i * block_size + j])){
+				max = Math.abs(dat_func[i * block_size + j]);
+				output[i] = {x: block_size * i / sampleRate_func, y:dat_func[i * block_size + j]};
+			}
+		}
+	}
+	return output;
+}
+
+function calRevT (ir, sampleRate) {
 	var revCurve = new Array(ir.length);
 	for (var i = 0; i < ir.length; i ++){
 		revCurve[i] = 0.0;
@@ -166,6 +220,47 @@ function drawChart () {
 						min: 0,
 						max: 2,
 						stepSize: 0.2
+					},
+				}]
+			},
+		}
+	});
+}
+
+function drawChart2 (ctx_func, label_func, time_max_fuc, dat_func) {
+	var myLineChart = new Chart(ctx_func, {
+		type: 'scatter',
+		data: {
+			datasets: [
+				{
+				label: label_func,
+				data: dat_func, borderWidth: 1, borderColor: 'red',fill: false, showLine: true, pointRadius: 0, cubicInterpolationMode: 'monotone'
+				}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '音圧（±1が録音できる最大値）',
+					},
+					ticks: {
+						min: -1,
+						max: 1,
+						stepSize: 0.2
+					},
+				}],
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '時間（秒）',
+					},
+					ticks: {
+						min: 0,
+						max: time_max_fuc,
+						stepSize: 0.5
 					},
 				}]
 			},

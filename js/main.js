@@ -103,7 +103,7 @@ function stopRec(){
   if (processor){
     trimAudioData();
     drawChart();
-    revT = calRevT(dat2);
+    revT = calRevT(dat2, sampeRate);
     var str = "インパルス応答から算出した残響時間：" + Math.round(revT * 100) / 100 + "秒";
     document.getElementById("revT").innerText = str;
 
