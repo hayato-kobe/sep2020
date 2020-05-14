@@ -3,6 +3,9 @@ var sound2 = initSoundWithBtnsOnOff ("./sounds/music_44k.wav", "music_anechoic",
 
 var audioCtx = Howler.ctx;
 var conv = audioCtx.createConvolver();
+var gain = audioCtx.createGain();
+Howler.masterGain.disconnect();
+Howler.masterGain.connect(gain).connect(audioCtx.destination);
 var input = null;
 var processor = null;
 var recorded_data = [];
@@ -17,11 +20,11 @@ const chkB = document.getElementById("on-off");
 chkB.addEventListener('change', (event) => {
 	if(event.target.checked==false || conv.buffer == null){
 		Howler.masterGain.disconnect();
-		Howler.masterGain.connect(audioCtx.destination);
+		Howler.masterGain.connect(gain).connect(audioCtx.destination);
 		}
 	else {
 		Howler.masterGain.disconnect();
-		Howler.masterGain.connect(conv).connect(audioCtx.destination);
+		Howler.masterGain.connect(conv).connect(gain).connect(audioCtx.destination);
 	}
 });
 
@@ -37,6 +40,12 @@ const btn2 = document.getElementById("music_anechoic");
   buttonHide("music_anechoic");
   buttonShow("music_anechoic_disabled");
   sound2.play();
+});
+
+const range1 = document.getElementById("masterVolume");
+gain.gain.value = range1.value / 100;
+range1.addEventListener('input', (event) => {
+  gain.gain.value = range1.value / 100;
 });
 
 function handleSuccess( stream ){
