@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./css/btn.css">
+<link rel="stylesheet" href="./css/chkbox.css">
+<link rel="stylesheet" href="./css/tbox.css">
+<title>残響時間による音声と音楽の聞こえ方の違い</title>
+</head>
+<body>
+<article>
+<section>
+<h2>音源再生</h2>
+<p class="chkbox">
+<input type="checkbox" id="on-off" value="1">
+<label for="on-off">残響音のON/OFF</label>
+</p>
+<button type="button" id="speech_anechoic" class="btn1"><font size="5">音声</font></button>
+<button id="speech_anechoic_disabled" class="btn2" disabled><font size="5">音声</font></button>
+</p>
+<p>
+<button type="button" id="music_anechoic" class="btn3"><font size="5">音楽</font></button>
+<button id="music_anechoic_disabled" class="btn4" disabled><font size="5">音楽</font></button>
+</p>
+</section>
+<section>
+  <p>
+    <label>残響時間（0.1〜6.0秒）
+      <input type="text" id="revTime" size="5" class="tbox1">
+    </label>
+  </p>
+  <p>この値が大きいほど響きが長くなる</p>
+  <p>
+    <label>直接音と残響音のレベル差（-30dB〜30dB）
+      <input type="text" id="revRatio" size="5" class="tbox1">
+    </label>
+  </p>
+  <p>この値が大きいほど音源に近い位置で聞いた音になる</p>
+<canvas id="myChart"></canvas>
+</section>
+</article>
+<script src="https://code.jquery.com/jquery-2.0.3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/optimum_reverberation_time.js"></script>
+</body>
+</html>
