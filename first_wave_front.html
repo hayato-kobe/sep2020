@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./css/btn.css">
+<link rel="stylesheet" href="./css/chkbox.css">
+<link rel="stylesheet" href="./css/tbox.css">
+<title>第一波面の法則の演習</title>
+</head>
+<body>
+<article>
+<section>
+<p>
+  <label for="masterVolume">音量</label>
+  <input type="range" id="masterVolume" value="50" min="0" max="100" step="1" style="width:50%">
+</p>
+<p>
+  <label>左スピーカに対する右スピーカの遅れ時間（0〜200ms）
+    <input type="text" id="delay_time" size="5" class="tbox1">ms
+  </label>
+</p>
+<p>
+  <input type="range" id="delay_time_range1" value="0" min="0" max="1" step="0.01" style="width:50%"> 0.01msステップで変更
+</p>
+<p>
+  <input type="range" id="delay_time_range2" value="0" min="0" max="199.01" step="1" style="width:50%"> 1msステップで変更
+</p>
+<p>
+<button type="button" id="speech_anechoic" class="btn1"><font size="5">音声</font></button>
+<button id="speech_anechoic_disabled" class="btn2" disabled><font size="5">音声</font></button>
+</p>
+<p>
+<button type="button" id="music_anechoic" class="btn3"><font size="5">音楽</font></button>
+<button id="music_anechoic_disabled" class="btn4" disabled><font size="5">音楽</font></button>
+</p>
+<p>
+<img src="./img/first_wave_front_fig.png" style="width:50%">
+</p>
+</section>
+</article>
+
+<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/first_wave_front.js"></script>
+
+</body>
+</html>
