@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./css/btn.css">
+<link rel="stylesheet" href="./css/chkbox.css">
+<link rel="stylesheet" href="./css/tbox.css">
+<title>ASWとLEVの演習</title>
+</head>
+<body>
+<article>
+<section>
+<p>
+  <label for="masterVolume">音量&nbsp;</label>
+  <input type="range" id="masterVolume" value="50" min="0" max="100" step="1" style="width:50%">
+</p>
+<p>
+  <table>
+    <tr>
+      <th>反射音&nbsp;&nbsp;</th>
+      <th>遅れ時間 (ms)&nbsp;&nbsp;</th>
+      <th>相対音圧レベル (dB)&nbsp;&nbsp;</th>
+      <th>到来方向 (度)&nbsp;&nbsp;</th>
+    </tr>
+    <tr>
+      <td align="center">1</td>
+      <td align="center"><input type="text" id="ref1_delay" size="5" class="tbox1"></td>
+      <td align="center"><input type="text" id="ref1_spl" size="5" class="tbox1"></td>
+      <td align="center">30</td>
+    </tr>
+    <tr>
+      <td align="center">2</td>
+      <td align="center"><input type="text" id="ref2_delay" size="5" class="tbox1"></td>
+      <td align="center"><input type="text" id="ref2_spl" size="5" class="tbox1"></td>
+      <td align="center">330</td>
+    </tr>
+    <tr>
+      <td align="center">3</td>
+      <td align="center"><input type="text" id="ref3_delay" size="5" class="tbox1"></td>
+      <td align="center"><input type="text" id="ref3_spl" size="5" class="tbox1"></td>
+      <td align="center">60</td>
+    </tr>
+    <tr>
+      <td align="center">4</td>
+      <td align="center"><input type="text" id="ref4_delay" size="5" class="tbox1"></td>
+      <td align="center"><input type="text" id="ref4_spl" size="5" class="tbox1"></td>
+      <td align="center">300</td>
+    </tr>
+  </table>
+</p>
+<p>
+<button type="button" id="music_anechoic" class="btn3"><font size="5">音楽</font></button>
+<button id="music_anechoic_disabled" class="btn4" disabled><font size="5">音楽</font></button>
+</p>
+<p>
+<img src="./img/ASW_LEV_fig.png" style="width:50%">
+</p>
+</section>
+</article>
+
+<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/ASW_LEV.js"></script>
+
+</body>
+</html>
