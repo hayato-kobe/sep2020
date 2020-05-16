@@ -1,3 +1,20 @@
+function loadAudioBufferFromFile (ctx_func, src_func) {
+	var request = new XMLHttpRequest();
+	request.open('GET', src_func, true);
+	request.responseType = 'arraybuffer';
+	request.send();
+	return new Promise((resolve, reject) => {
+		request.onload = function () {
+			ctx_func.decodeAudioData(request.response, function (buf) {
+				resolve(buf);
+			});
+		}
+		request.onerror = function (event) {
+			reject(event);
+		}
+	});
+}
+
 function limitTextValue (id, min, max) {
 	var value = document.getElementById(id).value;
 	if (value > max){
