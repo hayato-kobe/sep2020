@@ -34,6 +34,13 @@ var gain_ref2 = audioCtx.createGain();
 var gain_ref3 = audioCtx.createGain();
 var gain_ref4 = audioCtx.createGain();
 
+conv_direct.normalize = false;
+conv_ref1.normalize = false;
+conv_ref2.normalize = false;
+conv_ref3.normalize = false;
+conv_ref4.normalize = false;
+
+
 Howler.masterGain.disconnect();
 Howler.masterGain.connect(conv_direct).connect(audioCtx.destination);
 Howler.masterGain.connect(conv_ref1).connect(delay_ref1).connect(gain_ref1).connect(audioCtx.destination);
@@ -98,6 +105,7 @@ btn2.addEventListener("click", ()=>{
   buttonShow("music_anechoic_disabled");
   Howler.masterGain.disconnect();
   Howler.masterGain.connect(conv_direct).connect(audioCtx.destination);
+	document.getElementById("arrangement").src = "./img/ASW_LEV_fig2.png";
   sound2.play();
   var play_count = 0;
   sound2.once("end", function (){
@@ -106,6 +114,7 @@ btn2.addEventListener("click", ()=>{
     Howler.masterGain.connect(conv_ref3).connect(delay_ref3).connect(gain_ref3).connect(audioCtx.destination);
     Howler.masterGain.connect(conv_ref4).connect(delay_ref4).connect(gain_ref4).connect(audioCtx.destination);
     sound2.play();
+		document.getElementById("arrangement").src = "./img/ASW_LEV_fig.png"
   });
   sound2.on("end", function (){
     play_count += 1;

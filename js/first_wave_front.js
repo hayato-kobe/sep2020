@@ -8,6 +8,7 @@ buttonHide("music_anechoic_disabled");
 buttonColG("music_anechoic_disabled");
 
 document.getElementById("delay_time").value = "0";
+document.getElementById("relative_level").value = "0";
 
 var sound1 = initSoundWithBtnsOnOff ("./sounds/speech_44k.wav", "speech_anechoic", "speech_anechoic_disabled");
 var sound2 = initSoundWithBtnsOnOff ("./sounds/music_44k.wav", "music_anechoic", "music_anechoic_disabled");
@@ -16,11 +17,15 @@ var audioCtx = Howler.ctx;
 var delayR = audioCtx.createDelay();
 var conv_L = audioCtx.createConvolver();
 var conv_R = audioCtx.createConvolver();
+conv_L.normalize = false;
+conv_R.normalize = false;
 
 var gain = audioCtx.createGain();
+var gainL = audioCtx.createGain();
+var gainR = audioCtx.createGain();
 Howler.masterGain.disconnect();
-Howler.masterGain.connect(conv_L).connect(gain).connect(audioCtx.destination);
-Howler.masterGain.connect(conv_R).connect(delayR).connect(gain).connect(audioCtx.destination);
+Howler.masterGain.connect(conv_L).connect(gainL).connect(gain).connect(audioCtx.destination);
+Howler.masterGain.connect(conv_R).connect(gainR).connect(delayR).connect(gain).connect(audioCtx.destination);
 
 loadAudioBufferFromFile(audioCtx, "./sounds/315L.wav").then((value) => {
   var HRIR1 = value.getChannelData(0);
@@ -83,4 +88,30 @@ range2.addEventListener('input', (event) => {
 range3.addEventListener('input', (event) => {
   tbox1.value = range2.value / 1 + range3.value / 1;
   delayR.delayTime.value = tbox1.value / 1000;
+});
+
+function setGainLR(value_func) {
+  if (value_func > 0){
+    gainL.gain.value = Math.pow(10, -1 * value_func / 20);
+    gainR.gain.value = 1;
+  }
+  else {
+    gainL.gain.value = 1;
+    gainR.gain.value = Math.pow(10, value_func / 20);
+  }
+}
+
+const tbox2 = document.getElementById("relative_level");
+const range4 = document.getElementById("relative_level_range1");
+setGainLR(tbox2.value);
+tbox2.addEventListener('input', (event) => {
+  if($.isNumeric(document.getElementById("relative_level").value)){
+    limitTextValue("relative_level",-40, 40);
+    range4.value = tbox2.value ;
+    setGainLR(tbox2.value);
+  }
+});
+range4.addEventListener('input', (event) => {
+  tbox2.value = range4.value;
+  setGainLR(tbox2.value);
 });
