@@ -28,6 +28,15 @@
   <input type="range" id="delay_time_range2" value="0" min="0" max="199.01" step="1" style="width:60%">
 </p>
 <p>
+  <label>左スピーカに対する右スピーカの相対音圧レベル（-40〜40dB）
+    <input type="text" id="relative_level" size="7" class="tbox1">dB
+  </label>
+</p>
+<p>
+  <label for="relative_level_range1"><font style="color: Transparent">0.0</font>1dBステップで変更&nbsp;</label>
+  <input type="range" id="relative_level_range1" value="0" min="-40" max="40" step="1" style="width:60%" >
+</p>
+<p>
 <button type="button" id="speech_anechoic" class="btn1"><font size="5">音声</font></button>
 <button id="speech_anechoic_disabled" class="btn2" disabled><font size="5">音声</font></button>
 </p>
