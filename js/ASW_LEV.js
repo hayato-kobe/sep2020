@@ -5,12 +5,12 @@ buttonColG("music_anechoic_disabled");
 
 document.getElementById("ref1_delay").value = "7";
 document.getElementById("ref2_delay").value = "18";
-document.getElementById("ref3_delay").value = "0";
-document.getElementById("ref4_delay").value = "0";
-document.getElementById("ref1_spl").value = "-3";
-document.getElementById("ref2_spl").value = "-3";
-document.getElementById("ref3_spl").value = "-99";
-document.getElementById("ref4_spl").value = "-99";
+document.getElementById("ref3_delay").value = "35";
+document.getElementById("ref4_delay").value = "46";
+document.getElementById("ref1_spl").value = "-6";
+document.getElementById("ref2_spl").value = "-6";
+document.getElementById("ref3_spl").value = "-9";
+document.getElementById("ref4_spl").value = "-9";
 
 var sound2 = new Howl({
 		src: ["./sounds/music2_44k.wav"],
@@ -25,28 +25,57 @@ var conv_ref1 = audioCtx.createConvolver();
 var conv_ref2 = audioCtx.createConvolver();
 var conv_ref3 = audioCtx.createConvolver();
 var conv_ref4 = audioCtx.createConvolver();
+var conv_ref5 = audioCtx.createConvolver();
+var conv_ref6 = audioCtx.createConvolver();
+var conv_ref7 = audioCtx.createConvolver();
+var conv_ref8 = audioCtx.createConvolver();
 var delay_ref1 = audioCtx.createDelay();
 var delay_ref2 = audioCtx.createDelay();
 var delay_ref3 = audioCtx.createDelay();
 var delay_ref4 = audioCtx.createDelay();
+var delay_ref5 = audioCtx.createDelay();
+var delay_ref6 = audioCtx.createDelay();
+var delay_ref7 = audioCtx.createDelay();
+var delay_ref8 = audioCtx.createDelay();
 var gain_ref1 = audioCtx.createGain();
 var gain_ref2 = audioCtx.createGain();
 var gain_ref3 = audioCtx.createGain();
 var gain_ref4 = audioCtx.createGain();
+var gain_ref5 = audioCtx.createGain();
+var gain_ref6 = audioCtx.createGain();
+var gain_ref7 = audioCtx.createGain();
+var gain_ref8 = audioCtx.createGain();
 
 conv_direct.normalize = false;
 conv_ref1.normalize = false;
 conv_ref2.normalize = false;
 conv_ref3.normalize = false;
 conv_ref4.normalize = false;
+conv_ref5.normalize = false;
+conv_ref6.normalize = false;
+conv_ref7.normalize = false;
+conv_ref8.normalize = false;
 
+// Howler.masterGain.disconnect();
+// Howler.masterGain.connect(conv_direct).connect(audioCtx.destination);
+// Howler.masterGain.connect(conv_ref1).connect(delay_ref1).connect(gain_ref1).connect(audioCtx.destination);
+// Howler.masterGain.connect(conv_ref2).connect(delay_ref2).connect(gain_ref2).connect(audioCtx.destination);
+// Howler.masterGain.connect(conv_ref3).connect(delay_ref3).connect(gain_ref3).connect(audioCtx.destination);
+// Howler.masterGain.connect(conv_ref4).connect(delay_ref4).connect(gain_ref4).connect(audioCtx.destination);
+// Howler.masterGain.connect(conv_ref5).connect(delay_ref5).connect(gain_ref5).connect(audioCtx.destination);
+// Howler.masterGain.connect(conv_ref6).connect(delay_ref6).connect(gain_ref6).connect(audioCtx.destination);
+// Howler.masterGain.connect(conv_ref7).connect(delay_ref7).connect(gain_ref7).connect(audioCtx.destination);
+// Howler.masterGain.connect(conv_ref8).connect(delay_ref8).connect(gain_ref8).connect(audioCtx.destination);
 
-Howler.masterGain.disconnect();
-Howler.masterGain.connect(conv_direct).connect(audioCtx.destination);
-Howler.masterGain.connect(conv_ref1).connect(delay_ref1).connect(gain_ref1).connect(audioCtx.destination);
-Howler.masterGain.connect(conv_ref2).connect(delay_ref2).connect(gain_ref2).connect(audioCtx.destination);
-Howler.masterGain.connect(conv_ref3).connect(delay_ref3).connect(gain_ref3).connect(audioCtx.destination);
-Howler.masterGain.connect(conv_ref4).connect(delay_ref4).connect(gain_ref4).connect(audioCtx.destination);
+gain_ref5.gain.value = 0;
+gain_ref6.gain.value = 0;
+gain_ref7.gain.value = 0;
+gain_ref8.gain.value = 0;
+
+delay_ref5.delayTime.value = 97/1000;
+delay_ref6.delayTime.value = 101/1000;
+delay_ref7.delayTime.value = 105/1000;
+delay_ref8.delayTime.value = 111/1000;
 
 loadAudioBufferFromFile(audioCtx, "./sounds/0L.wav").then((value) => {
   var HRIR1 = value.getChannelData(0);
@@ -88,6 +117,46 @@ loadAudioBufferFromFile(audioCtx, "./sounds/0L.wav").then((value) => {
                     temp_buffer.getChannelData(0).set(HRIR1);
                     temp_buffer.getChannelData(1).set(HRIR2);
                     conv_ref4.buffer = temp_buffer;
+										loadAudioBufferFromFile(audioCtx, "./sounds/165L.wav").then((value) => {
+		                  var HRIR1 = value.getChannelData(0);
+		                  loadAudioBufferFromFile(audioCtx, "./sounds/165R.wav").then((value) => {
+		                    var HRIR2 = value.getChannelData(0);
+		                    var temp_buffer = audioCtx.createBuffer(2, HRIR1.length, audioCtx.sampleRate);
+		                    temp_buffer.getChannelData(0).set(HRIR1);
+		                    temp_buffer.getChannelData(1).set(HRIR2);
+		                    conv_ref5.buffer = temp_buffer;
+												loadAudioBufferFromFile(audioCtx, "./sounds/195L.wav").then((value) => {
+				                  var HRIR1 = value.getChannelData(0);
+				                  loadAudioBufferFromFile(audioCtx, "./sounds/195R.wav").then((value) => {
+				                    var HRIR2 = value.getChannelData(0);
+				                    var temp_buffer = audioCtx.createBuffer(2, HRIR1.length, audioCtx.sampleRate);
+				                    temp_buffer.getChannelData(0).set(HRIR1);
+				                    temp_buffer.getChannelData(1).set(HRIR2);
+				                    conv_ref6.buffer = temp_buffer;
+														loadAudioBufferFromFile(audioCtx, "./sounds/70_135L.wav").then((value) => {
+						                  var HRIR1 = value.getChannelData(0);
+						                  loadAudioBufferFromFile(audioCtx, "./sounds/70_135R.wav").then((value) => {
+						                    var HRIR2 = value.getChannelData(0);
+						                    var temp_buffer = audioCtx.createBuffer(2, HRIR1.length, audioCtx.sampleRate);
+						                    temp_buffer.getChannelData(0).set(HRIR1);
+						                    temp_buffer.getChannelData(1).set(HRIR2);
+						                    conv_ref7.buffer = temp_buffer;
+																loadAudioBufferFromFile(audioCtx, "./sounds/70_225L.wav").then((value) => {
+								                  var HRIR1 = value.getChannelData(0);
+								                  loadAudioBufferFromFile(audioCtx, "./sounds/70_225R.wav").then((value) => {
+								                    var HRIR2 = value.getChannelData(0);
+								                    var temp_buffer = audioCtx.createBuffer(2, HRIR1.length, audioCtx.sampleRate);
+								                    temp_buffer.getChannelData(0).set(HRIR1);
+								                    temp_buffer.getChannelData(1).set(HRIR2);
+								                    conv_ref8.buffer = temp_buffer;
+																	});
+																});
+															});
+														});
+													});
+												});
+											});
+										});
                   });
                 });
               });
@@ -113,6 +182,10 @@ btn2.addEventListener("click", ()=>{
     Howler.masterGain.connect(conv_ref2).connect(delay_ref2).connect(gain_ref2).connect(audioCtx.destination);
     Howler.masterGain.connect(conv_ref3).connect(delay_ref3).connect(gain_ref3).connect(audioCtx.destination);
     Howler.masterGain.connect(conv_ref4).connect(delay_ref4).connect(gain_ref4).connect(audioCtx.destination);
+		Howler.masterGain.connect(conv_ref5).connect(delay_ref5).connect(gain_ref5).connect(audioCtx.destination);
+		Howler.masterGain.connect(conv_ref6).connect(delay_ref6).connect(gain_ref6).connect(audioCtx.destination);
+		Howler.masterGain.connect(conv_ref7).connect(delay_ref7).connect(gain_ref7).connect(audioCtx.destination);
+		Howler.masterGain.connect(conv_ref8).connect(delay_ref8).connect(gain_ref8).connect(audioCtx.destination);
     sound2.play();
 		document.getElementById("arrangement").src = "./img/ASW_LEV_fig.png"
   });
@@ -188,4 +261,23 @@ tbox8.addEventListener('input', (event) => {
     limitTextValue("ref4_spl",-99, 0);
     gain_ref4.gain.value = Math.pow(10, tbox8.value / 20);
   }
+});
+
+const chkB = document.getElementById("on-off2");
+chkB.addEventListener('change', (event) => {
+	if(event.target.checked==false){
+		gain_ref5.gain.value = 0;
+		gain_ref6.gain.value = 0;
+		gain_ref7.gain.value = 0;
+		gain_ref8.gain.value = 0;
+		}
+	else {
+		gain_ref5.gain.value = Math.pow(10,-10/20);
+		gain_ref6.gain.value = Math.pow(10,-10/20);
+		gain_ref7.gain.value = Math.pow(10,-10/20);
+		gain_ref8.gain.value = Math.pow(10,-10/20);
+		console.log(conv_ref5);
+		console.log(gain_ref5);
+		console.log(delay_ref5);
+	}
 });
