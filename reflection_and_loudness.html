@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./css/btn.css">
+<link rel="stylesheet" href="./css/chkbox.css">
+<link rel="stylesheet" href="./css/tbox.css">
+<title>反射音とラウドネスの演習</title>
+</head>
+<body>
+<article>
+<section>
+<p>
+  <label for="masterVolume">音量&nbsp;</label>
+  <input type="range" id="masterVolume" value="50" min="0" max="100" step="1" style="width:50%">
+</p>
+<p>
+  <label>直接音に対する反射音の遅れ時間（1〜200ms）
+    <input type="text" id="delay_time" size="7" class="tbox1">ms
+  </label>
+</p>
+<p>
+  <label for="delay_time_range2"><font style="color: Transparent">0.0</font>1msステップで変更&nbsp;</label>
+  <input type="range" id="delay_time_range" value="0" min="1" max="200" step="1" style="width:60%">
+</p>
+<!-- <p>
+  <label>直接音に対する反射音の相対音圧レベル（-40〜40dB）
+    <input type="text" id="relative_level" size="7" class="tbox1">dB
+  </label>
+</p>
+<p>
+  <label for="relative_level_range1"><font style="color: Transparent">0.0</font>1dBステップで変更&nbsp;</label>
+  <input type="range" id="relative_level_range1" value="0" min="-40" max="40" step="1" style="width:60%" >
+</p> -->
+<p>
+<button type="button" id="burst" class="btn1"><font size="5">短音</font></button>
+<button id="burst_disabled" class="btn2" disabled><font size="5">短音</font></button>
+</p>
+<p>
+<button type="button" id="speech" class="btn3"><font size="5">音声</font></button>
+<button id="speech_disabled" class="btn4" disabled><font size="5">音声</font></button>
+</p>
+</section>
+</article>
+
+<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/reflection_and_loudness.js"></script>
+
+</body>
+</html>
