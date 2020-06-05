@@ -320,6 +320,47 @@ function drawChart2 (ctx_func, label_func, time_max_fuc, dat_func) {
 	});
 }
 
+function drawChart3 (ctx_func, label_func, time_max_fuc, y_max_func, dat_func) {
+	var myLineChart = new Chart(ctx_func, {
+		type: 'scatter',
+		data: {
+			datasets: [
+				{
+				label: label_func,
+				data: dat_func, borderWidth: 1, borderColor: 'red',fill: false, showLine: true, pointRadius: 0, cubicInterpolationMode: 'monotone'
+				}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '音のエネルギー密度 [J/m3]',
+					},
+					ticks: {
+						precision: 3,
+						min: 0,
+						max: y_max_func,
+					},
+				}],
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '時間（秒）',
+					},
+					ticks: {
+						min: 0,
+						max: time_max_fuc,
+						stepSize: 0.5
+					},
+				}]
+			},
+		}
+	});
+}
+
 function availableData( arr ){
 	var b = false;
 	for( var i = 0; i < arr.length && !b; i ++ ){
