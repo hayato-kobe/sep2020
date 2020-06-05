@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./css/btn.css">
+<link rel="stylesheet" href="./css/chkbox.css">
+<title>拡散理論の演習</title>
+</head>
+<body>
+<article>
+<section>
+<h2>室内音響のパラメータ</h2>
+<p>
+<label for "width">幅[m]</label>
+<input type="text" id="width" size="5" class="tbox1">
+<label for "depth">奥行き[m]</label>
+<input type="text" id="depth" size="5" class="tbox1">
+<label for "hight">高さ[m]</label>
+<input type="text" id="height" size="5" class="tbox1">
+</p>
+<p>
+<label for "absb">平均吸音率 \(\bar{\alpha}\)[-]</label>
+<input type="text" id="absb" size="5" class="tbox1">
+<label for "pow">音響出力 \(W\)[J/s]</label>
+<input type="text" id="pow" size="5" class="tbox1">
+</p>
+<p>
+<span>表面積 \(S\)[\(\mathrm{m}^{2}\)]</span>
+<span id="area">0.0</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span>容積 \(V\)[\(\mathrm{m}^{3}\)]</span>
+<span id="volume">0.0</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+音速（20\(^{\circ}\)C） \(c\)[m/s] 343.55
+</p>
+<p>
+<span>\(\frac{4W}{cS\bar{\alpha}}=\)</span><span id="e0">0.0</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span>\(-\frac{cS\bar{\alpha}}{4V}=\)</span><span id="damp">0.0</span>
+</p>
+<canvas id="Chart1"></canvas>
+<canvas id="Chart2"></canvas>
+
+</section>
+</article>
+
+<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/diffuse_theory.js"></script>
+
+</body>
+</html>
